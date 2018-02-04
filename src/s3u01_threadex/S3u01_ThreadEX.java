@@ -59,13 +59,13 @@ public class S3u01_ThreadEX {
         
         //Day 4 Torsdag
         
-        /*
-        Day20170201opg1proconVb day20170201_1b = new Day20170201opg1proconVb();
-        day20170201_1b.run();
+        
+        //Day20170201opg1proconVb day20170201_1b = new Day20170201opg1proconVb();
+        //day20170201_1b.run();
         
         Day20170201opg1proconVa day20170201_1a = new Day20170201opg1proconVa();
         day20170201_1a.run();
-        */
+        
         
                 //2017-02-04: kommentarer: 
                 // bo Totalsummen er 321961647
