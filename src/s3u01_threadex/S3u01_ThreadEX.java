@@ -50,9 +50,12 @@ public class S3u01_ThreadEX {
         //Day20170130_eks02 day20170130_b = new Day20170130_eks02();
         //day20170130_b.run();
         
+        Day20170130_opg5 day20170130_5 = new Day20170130_opg5();
+        day20170130_5.run();
+        
         //Day 3
-        Day20170131opg01 day20170131_1 = new Day20170131opg01();
-        day20170131_1.run();
+        //Day20170131opg01 day20170131_1 = new Day20170131opg01();
+        //day20170131_1.run();
         
         //Day 4 Torsdag
         

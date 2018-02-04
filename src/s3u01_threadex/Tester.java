@@ -1,37 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package s3u01_threadex;
 
-/**
- *
- * @author Christian
- */
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 public class Tester {
-  
   public static void main(String[] args) {
-      /*
-    TagCounter tc1 = new TagCounter("http://www.fck.dk");
-    tc1.run();
-    TagCounter tc2= new TagCounter("http://www.google.com");
-    tc2.run();
-    TagCounter tc3= new TagCounter("http://politiken.dk/");
-    tc3.run();
     
-    System.out.println("Title: "+tc1.getTitle());
-    System.out.println("Div's: "+tc1.getDivCount());
-    System.out.println("Body's: "+tc1.getBodyCount());         
-    
-    
-    System.out.println("Title: "+tc2.getTitle());
-    System.out.println("Div's: "+tc2.getDivCount());
-    System.out.println("Body's: "+tc2.getBodyCount());   
-    
-    System.out.println("Title: "+tc3.getTitle());
-    System.out.println("Div's: "+tc3.getDivCount());
-    System.out.println("Body's: "+tc3.getBodyCount());   
-*/
+    try {
+      ResourceContainer resources = new ResourceContainer();
+      ResourceUser1 t1 = new ResourceUser1(resources);
+      ResourceUser2 t2 = new ResourceUser2(resources);
+      t1.start();
+      t2.start();
+          
+      t1.join();
+      t2.join();
+      
+      System.out.println("Done");
+      System.out.println("Words produced: "+resources.getResourceWords().size());
+      System.out.println("Numbers produced: "+resources.getResourceNumbers().size());
+    } catch (InterruptedException ex) {
+      Logger.getLogger(Tester.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 }
