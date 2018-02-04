@@ -50,8 +50,8 @@ public class S3u01_ThreadEX {
         //Day20170130_eks02 day20170130_b = new Day20170130_eks02();
         //day20170130_b.run();
         
-        Day20170130_opg5 day20170130_5 = new Day20170130_opg5();
-        day20170130_5.run();
+        //Day20170130_opg5 day20170130_5 = new Day20170130_opg5();
+        //day20170130_5.run();
         
         //Day 3
         //Day20170131opg01 day20170131_1 = new Day20170131opg01();
@@ -59,11 +59,27 @@ public class S3u01_ThreadEX {
         
         //Day 4 Torsdag
         
-        //Day20170201opg1proconVb day20170201_1b = new Day20170201opg1proconVb();
-        //day20170201_1b.run();
+        /*
+        Day20170201opg1proconVb day20170201_1b = new Day20170201opg1proconVb();
+        day20170201_1b.run();
         
-        //Day20170201opg1proconVa day20170201_1a = new Day20170201opg1proconVa();
-        //day20170201_1a.run();
+        Day20170201opg1proconVa day20170201_1a = new Day20170201opg1proconVa();
+        day20170201_1a.run();
+        */
+        
+                //2017-02-04: kommentarer: 
+                // bo Totalsummen er 321961647
+                // chr totalSum:     321961647
+                /*
+                    Bo's klasser: se mappen: "Bo exam prep fib"
+
+                    Chr tilsvarende opgave:
+                        Day20170201opg1proconVa  //indeholder bedste traad program af de 2
+                        Day20170201opg1proconVb // indeholder chr's svar paa teksterne
+
+                */
+        
+        
         
         //Day20170201opg2constack day20170201_2 = new Day20170201opg2constack();
         //day20170201_2.run();
