@@ -83,6 +83,25 @@ public class Day20170130_opg5 {
         til brug for den anden traad.
         
         (se aendringerne til Ressourceuser 1 og Ressourceuser2).
+        
+        Det noedvendigt at sikre sig at deadlockDetectoren afsluttes naar de
+        relevante traade succefuldt er koert faerdige. 
+        Derfor har jeg tilfoejet foelgende koedestump til DeadLockDetector: (med tilhoerende variable)
+        
+            someThreadsAlive = false;
+            for (Thread thread : possibleDeadlocks) {
+                if (thread.isAlive()) {
+                    someThreadsAlive = true;
+                }
+            }
+            if (someThreadsAlive == false) {
+                keepRunning = false;
+            }
+        
+        DeadLockDetector tager et array af de traade den skal hold oeje med,
+        og tjekker saa loebende om der stadig er traade der er i live.
+        Er alle traade doede, stoppes DeadLockDetector, da programmet regnes for afsluttet.
+        
         */
         
     }
