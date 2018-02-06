@@ -87,5 +87,12 @@ public class S3u01_ThreadEX {
         
         
     }
+    
+    /*
+    Benediktes review af min Kode:
+    
+    Benedikte synes det er spaendende.
+    
+    */
 
 }

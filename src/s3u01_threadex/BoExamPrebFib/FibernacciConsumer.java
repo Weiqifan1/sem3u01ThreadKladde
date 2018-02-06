@@ -38,7 +38,7 @@ public class FibernacciConsumer implements Runnable {
                 if (fibNumber != null) {
                     System.out.println("Fibernacci number is: " + fibNumber);
                     totalFibSum += fibNumber;
-                    //System.out.println("Totalsummen er " + totalFibSum);//Hvis der skal printes subtotal
+                    System.out.println("Totalsummen er " + totalFibSum);//Hvis der skal printes subtotal
                 } else {
                     moreNumbersToConsume = false;
                 }

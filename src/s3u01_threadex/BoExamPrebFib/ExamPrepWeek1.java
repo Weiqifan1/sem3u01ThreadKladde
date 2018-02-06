@@ -50,8 +50,10 @@ public class ExamPrepWeek1 {
         FibernacciConsumer consumer = new FibernacciConsumer(producedNumbers);
         es.execute(consumer);
 
+        System.out.println("faerdig 1");
         es.shutdown();
-        
+        System.out.println("faerdig 2");
+        /*
         try {
             es.awaitTermination(10, TimeUnit.SECONDS);
             System.out.println("Totalsummen er " + consumer.getTotalFibSum());
@@ -59,7 +61,7 @@ public class ExamPrepWeek1 {
         } catch (InterruptedException e) {
             System.out.println("Fejl ved closing down i main");
         }
-
+        */
     }
 }
 
@@ -128,7 +130,21 @@ General Part:
         Spærer for brug af en tråd, som ville kunne gøre noget andet i ventetiden. 
         Sleep, lock og wait swapper processen ud dvs laver noget andet i ventetiden.
 
-    
+    *** kommentar:
+    ---------------------------
+
+    bullet 5)
+    Describe Java's ​BlockingQueue
+​  interface, relevant implementations and methods relevant for the producer consumer problem.    
+        
+        Er en kø, som er thread safe at putte data i og tage data ud fra.
+        Har 4 forskellige metoder for insætte, fjerne og undersøge elementerne i køen.
+        Hver sæt af metoder opfører sig forskellige, hvis den ønskede funktion ikke kan udføres.
+        Implementations: Da det er et interfaces skal en af de forskellige implamentationer bruges 
+        eks.vis. ArrayBlockingQueue eller LinkedBlockingQueue.
+
+    *** kommentar:
+    ---------------------------
 
 Practical part:
     
@@ -148,8 +164,83 @@ Practical part:
             for (int i = 0; i < numbersToProducer.length; i++) {
                 s1.add(numbersToProducer[i]);
             }
-
-    2)
-        The Main thread should start the four Producer threads (P1 - P4), that all uses the shared data structure S1 to retrieve values for which they should calculate the corresponding Fibonacci number. When a thread has finished the calculation, it should add the result to the shared data structure S2, and continue with the next number in S1. If S1 is empty, the producer should stop (not sleep or wait).
-
 */
+/*
+    2)
+        The Main thread should start the four Producer threads (P1 - P4), 
+        that all uses the shared data structure S1 to retrieve values 
+        for which they should calculate the corresponding Fibonacci number. 
+        When a thread has finished the calculation, 
+        it should add the result to the shared data structure S2, 
+        and continue with the next number in S1. If S1 is empty, 
+        the producer should stop (not sleep or wait).
+
+        *** kommentar:
+        i FibernacciProducer, sikre boolean moreNumbersToFetch
+        at traaden stopper.
+        Executor service stopper via loopet i linje 53-56 i ExamPrepWeek1, :
+            es.shutdown();        
+            try {
+                es.awaitTermination(10, TimeUnit.SECONDS);
+        
+        Executoren stopper ikke naar arbejdet er faerdigt, fordi 
+        fibonacciConsumer linje 37:  fibNumber = producedNumbers.poll(10, TimeUnit.SECONDS);
+        venter paa at der kommer nye tal at "summe op".
+
+        Naar ventetiden er slut, burde executorService stoppe,
+        men af en eller anden grund er det noedvendigt med 
+        linje 56: es.awaitTermination(10, TimeUnit.SECONDS);
+
+
+        
+
+        i FibernacciProducer linje 36-39, faar man en long fra fib funktionen.
+        den castes til en int:
+                    long fibNumber = fib(number);
+                    //Skal castes til Integer
+                    Integer fibInt = (int) (long) fibNumber;
+                    producedNumbers.put(fibInt);
+        Hvorfor det?
+        Da fibonacci tal kan blive meget store, og int kun gaar til 
+        2,147,483,647, 
+        (fib 46 == 1,836,311,903
+         fib 47 == 2,971,215,073 )
+         betyder det at man ikke faar korrekte vaerdier
+         naar man begeregner fibonacci paa tal over 46.
+
+         long gaar til 
+         9,223,372,036,854,775,807
+
+        (fib 92 ==  7,540,113,804,746,346,429 
+         fib 93 == 12,200,160,415,121,876,738 )
+        
+         saa men long kan man ikke tage fibbonacci af tal stoerre end 92.
+         
+         skal man bruge stoerre tal end det, kan man bruge BigInteger 
+         der kan vaere lige saa stor som man har ram til.
+
+         
+         3)
+         Just after the main thread have started the four Producer threads, 
+        it should start the Consumer-thread C1, which continuously retrieves the calculated figures, 
+        prints them to the console and keep track of the total sum.
+
+        *** kommentar: 
+        ------------------
+
+        4)
+         When all threads have finished their jobs, print the sum of all the calculated Fibonacci numbers.  
+         
+         ****kommentar:
+         ----------------------
+
+        5)
+        Refactor all code in to a method which takes the number of Producer 
+        threads to use as an argument. Execute the method with 1, 2, 3, and 4 as argument. 
+        Calculate the time it takes for each execution and explain (as well as you can) the result.
+
+        **** kommentar:
+        Mangler?
+
+
+*/  
